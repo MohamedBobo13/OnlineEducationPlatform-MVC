@@ -1,0 +1,55 @@
+﻿@model IEnumerable<QuestionCourseExamReadVm>
+
+@{
+    ViewData["Title"] = "All Exam Questions";
+}
+<div class="container mt-5 align-content-center" style="width:1000px">
+<h2>All Exam Questions</h2>
+
+<div>
+    <a asp-action="SelectCourseForExam" class="btn btn-primary">Select Course</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question ID</th>
+            <th>Content</th>
+            <th>Marks</th>
+            <th>Question Type</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var question in Model)
+            {
+                <tr>
+                    <td>@question.Id</td>
+                    <td>@question.Content</td>
+                    <td>@question.Marks</td>
+                    <td>@question.QuestionType</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@question.Id" class="btn btn-info">Details</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">No exam questions available for this course.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+        @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+        {
+            <a asp-action="CreateExam" class="btn btn-success">Add New Question</a>
+        }
+        <a asp-action="index" class="btn btn-secondary">Back to Question List</a>
+</div>
+</div>
+

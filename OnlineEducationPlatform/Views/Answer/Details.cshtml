@@ -1,0 +1,24 @@
+﻿@model AnswerDetailsVm
+
+<div class="container mt-5 align-content-center" style="width:1000px">
+    <h2 class="text-center mb-4">Answer Details</h2>
+
+    <div>
+        <h4 class="mb-3">Answer Information</h4>
+        <dl class="row">
+            <dt class="col-sm-3">Answer Text:</dt>
+            <dd class="col-sm-9">@Model.AnswerText</dd>
+
+            <dt class="col-sm-3">Is Correct:</dt>
+            <dd class="col-sm-9">@Model.IsCorrect</dd>
+
+            <dt class="col-sm-3">Question Text:</dt>
+            <dd class="col-sm-9">@Model.QuestionText</dd>
+        </dl>
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary ">Back to List</a>
+    </div>
+</div>

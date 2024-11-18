@@ -1,0 +1,49 @@
+﻿@model AnswerResultUpdateVm
+
+<h2 class="text-center">Edit Answer Result</h2>
+<div class="container mt-5 align-content-center" style="width:1000px">
+<form asp-action="Edit" method="post" class="container mt-4">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group mb-3">
+        <label asp-for="StudentAnswer" class="control-label"></label>
+        <input asp-for="StudentAnswer" class="form-control" placeholder="Enter the student answer" />
+        <span asp-validation-for="StudentAnswer" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="MarksAwarded" class="control-label"></label>
+        <input asp-for="MarksAwarded" class="form-control" placeholder="Enter marks awarded" />
+        <span asp-validation-for="MarksAwarded" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="StudentId" class="control-label"></label>
+        <input asp-for="StudentId" class="form-control" placeholder="Enter the student ID" />
+        <span asp-validation-for="StudentId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="QuestionId" class="control-label"></label>
+        <input asp-for="QuestionId" class="form-control" placeholder="Enter the question ID" />
+        <span asp-validation-for="QuestionId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="AnswerId" class="control-label"></label>
+        <input asp-for="AnswerId" class="form-control" placeholder="Enter the answer ID" />
+        <span asp-validation-for="AnswerId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group text-center">
+        <input type="submit" value="Save Changes" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,36 @@
+﻿@model List<QuestionReadVm> 
+<div class="container mt-5 align-content-center" style="width:1000px">
+<h2>All Questions</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Content</th>
+            <th>Marks</th>
+            <th>Question Type</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td>@question.Content</td>
+                <td>@question.Marks</td>
+                <td>@question.QuestionType</td>
+
+                <td>
+                    <a asp-action="Details" asp-route-id="@question.Id" class="btn btn-info">Details</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="mt-4">
+    <a asp-action="ExamQuestions" class="btn btn-success">View All Exam Questions</a>
+    <a asp-action="QuizQuestions" class="btn btn-info">View All Quiz Questions</a>
+</div>
+</div>

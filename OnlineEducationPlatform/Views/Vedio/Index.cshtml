@@ -1,0 +1,39 @@
+﻿@using OnlineEducationPlatform.BLL.Dto.VideoDto
+@model IEnumerable<VedioReadVm>
+<div class="container mt-5 align-content-center" style="width:1000px">
+    <h2 class="text-center mb-4">Video List</h2>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Url</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vedio in Model)
+            {
+                <tr>
+                    <td>@vedio.Url</td>
+                    <td>@vedio.Title</td>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+                    {
+                        <td>
+                            <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@vedio.Id">Details</a>
+                            <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@vedio.Id">Edit</a>
+                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@vedio.Id">Delete</a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-end">
+        @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+        {
+            <a class="btn btn-primary btn-create" asp-action="Create">Create New Video</a>
+        }
+    </div>
+</div>
+

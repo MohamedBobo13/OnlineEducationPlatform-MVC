@@ -1,0 +1,43 @@
+﻿@model QuestionReadVm
+<div class="container mt-5 align-content-center" style="width:1000px">
+<h2>Question Details</h2>
+
+<div>
+    <h4>Content</h4>
+    <p>@Model.Content</p>
+
+    <h4>Marks</h4>
+    <p>@Model.Marks</p>
+
+    <h4>Question Type</h4>
+    <p>@Model.QuestionType</p>
+
+    <h4>Course ID</h4>
+    <p>@Model.CourseId</p>
+
+    @if (Model.ExamId != 0)
+    {
+        <h4>Exam ID</h4>
+        <p>@Model.ExamId</p>
+            @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+            {
+        <a asp-action="EditExam" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    }}
+    else
+    {
+        <h4>Quiz ID</h4>
+        <p>@Model.QuizId</p>
+        {
+                @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+            {
+        <a asp-action="EditQuiz" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+            }
+    }}
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to Question List</a>
+</div>
+</div>

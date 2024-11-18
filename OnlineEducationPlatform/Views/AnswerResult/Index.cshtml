@@ -1,0 +1,45 @@
+﻿@model List<AnswerResultReadVm>
+
+<<div class="container mt-5 align-content-center" style="width:1000px">
+    <h2 class="text-center mb-4">Answer Results</h2>
+
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Student Answer</th>
+                <th>Marks Awarded</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var result in Model)
+            {
+                <tr>
+                    <td>@result.StudentAnswer</td>
+                    <td>@result.MarksAwarded</td>
+
+                    <td>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Instructor") || User.IsInRole("Student"))
+                        {
+
+
+                            <a asp-action="Details" asp-route-id="@result.Id" class="btn btn-info btn-sm">Details</a>
+                        }
+                         @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+                        {
+                        <a asp-action="Edit" asp-route-id="@result.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@result.Id" class="btn btn-danger btn-sm">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-end">
+         @if (User.IsInRole("Admin") || User.IsInRole("Instructor")){
+
+        <a asp-action="Create" class="btn btn-success btn-create">Create New Answer Result</a>
+         }
+    </div>
+</div>

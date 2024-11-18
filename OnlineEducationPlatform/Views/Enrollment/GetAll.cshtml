@@ -1,0 +1,107 @@
+﻿@model IEnumerable<EnrollmentDtoForRetriveAllEnrollmentsInCourse>
+<div class="container mt-5 align-content-center" style="width:1000px">
+        <h2 class="text-center mt-4">Enrollments List</h2>
+       
+
+        <div class="mb-4">
+        @if (User.IsInRole("Admin") || User.IsInRole("Instructor")){
+
+            <h5>Get Enrollments for a Specific Course</h5>
+            <form asp-action="GetAllEnrollmentsForCourse" method="get">
+                <div class="form-group">
+                    <label for="courseId">Enter Course ID:</label>
+                    <input type="number" id="courseId" name="courseId" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Get All Enrollments for Course</button>
+            </form>
+
+            @if (TempData["CourseErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger">
+                        @TempData["CourseErrorMessage"]
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                }
+        </div>
+
+            <div class="mb-">
+        @if (User.IsInRole("Admin") || User.IsInRole("Instructor") || User.IsInRole("Student"))
+                {
+
+                <h5>Get Enrollments for a Specific Student</h5>
+            <form asp-action="GetAllEnrollmentsForStudent" method="get">
+                <div class="form-group">
+                    <label for="StudentId">Enter Student ID:</label>
+                    <input type="number" id="StudentId" name="StudentId" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Get All Enrollments for Student</button>
+            </form>
+
+            @if (TempData["StudentErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger">
+                    @TempData["StudentErrorMessage"]
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+                }
+
+            
+            <!-- Display an error message if the course ID is invalid -->
+         
+        </div>
+        <div class="table-container">
+            <table class="table table-striped table-bordered">
+        @if (User.IsInRole("Admin") || User.IsInRole("Instructor")){
+
+                <thead class="table-light">
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Course ID</th>
+                        <th>Status</th>
+                        <th>Enrollment Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var enrollment in Model)
+                        {
+                            <tr>
+                                <td>@enrollment.StudentId</td>
+                                <td>@enrollment.CourseId</td>
+                                <td>@enrollment.status</td>
+                                <td>@(enrollment.EnrollmentDate?.ToString("yyyy-MM-dd") ?? "N/A")</td>
+                                <td class="action-buttons">
+                                    <a asp-action="Edit" asp-route-id="@enrollment.Id" class="btn btn-warning">Edit</a>
+                                  
+                                    <a asp-action="ConfirmSoftDelete" asp-route-studentId="@enrollment.StudentId" asp-route-courseId="@enrollment.CourseId" class="btn btn-secondary">Unenroll</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center">No enrollments found.</td>
+                        </tr>
+                    }
+                </tbody>
+                }
+            </table>
+        @if (User.IsInRole("Admin") || User.IsInRole("Instructor")){
+           
+            <a asp-action="Add" class="btn btn-primary mt-3">Create New Enrollment</a>
+
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-3">Cancel</a>
+        }
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,31 @@
+﻿@model AnswerResultReadVm
+
+<h2 class="text-center mb-4">Answer Result Details</h2>
+
+<div class="container mt-5 align-content-center" style="width:1000px">
+    <h4 class="mb-3">Answer Result Information</h4>
+    <dl class="row">
+        <dt class="col-sm-3">Student Answer:</dt>
+        <dd class="col-sm-9">@Model.StudentAnswer</dd>
+
+        <dt class="col-sm-3">Marks Awarded:</dt>
+        <dd class="col-sm-9">@Model.MarksAwarded</dd>
+
+        <dt class="col-sm-3">Student ID:</dt>
+        <dd class="col-sm-9">@Model.StudentId</dd>
+
+        <dt class="col-sm-3">Question ID:</dt>
+        <dd class="col-sm-9">@Model.QuestionId</dd>
+
+        <dt class="col-sm-3">Answer ID:</dt>
+        <dd class="col-sm-9">@Model.AnswerId</dd>
+    </dl>
+</div>
+
+<div class="text-center mt-4">
+    @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+    {
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

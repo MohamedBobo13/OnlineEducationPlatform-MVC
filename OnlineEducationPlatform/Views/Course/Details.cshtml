@@ -1,0 +1,25 @@
+﻿@using OnlineEducationPlatform.BLL.Dto.CourseDto
+@model CourseReadVm
+
+<div class="container mt-5 align-content-center" style="width:1000px">
+    <h2 class="text-center mb-4">Course Details</h2>
+
+    <div>
+        <h4 class="mb-3">Course</h4>
+        <dl class="row">
+            <dt class="col-sm-3">Title</dt>
+            <dd class="col-sm-9">@Model.Title</dd>
+
+            <dt class="col-sm-3">Description</dt>
+            <dd class="col-sm-9">@Model.Description</dd>
+
+            <dt class="col-sm-3">TotalHours</dt>
+            <dd class="col-sm-9">@Model.TotalHours</dd>
+        </dl>
+    </div>
+
+    <div class="mt-4">
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+    </div>
+</div>

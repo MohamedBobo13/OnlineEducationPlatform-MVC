@@ -1,0 +1,42 @@
+﻿@model List<AnswerReadVm>
+
+<div class="container mt-5 align-content-center" style="width:1000px">
+    <h2 class="text-center mb-4">Answers List</h2>
+
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Question Text</th>
+                <th>Answer Text</th>
+                <th>Is Correct</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+            {
+            @foreach (var answer in Model)
+            {
+                <tr>
+                    <td>@answer.QuestionText</td>
+                    <td>@answer.AnswerText</td>
+                    <td>@answer.IsCorrect</td>
+                    <td>
+                        <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@answer.Id">Details</a>
+                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@answer.Id">Edit</a>
+                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@answer.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+            }
+        </tbody>
+    </table>
+
+    <div class="text-end">
+        @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+        {
+            <a class="btn btn-success btn-create" asp-action="Create">Create New Answer</a>
+        }
+    </div>
+</div>

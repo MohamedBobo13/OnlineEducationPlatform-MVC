@@ -1,0 +1,23 @@
+﻿@using OnlineEducationPlatform.BLL.Dto.LectureDto
+@model LectureReadVm
+
+<div class="container mt-5 align-content-center" style="width:1000px">
+    <h2 class="text-center mb-4">Lecture Details</h2>
+
+    <div>
+        <h4 class="mb-3">Lecture</h4>
+        <dl class="row">
+            <dt class="col-sm-3">Title</dt>
+            <dd class="col-sm-9">@Model.Title</dd>
+
+            <dt class="col-sm-3">Order</dt>
+            <dd class="col-sm-9">@Model.Order</dd>
+
+        </dl>
+    </div>
+
+    <div class="mt-4">
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+    </div>
+</div>

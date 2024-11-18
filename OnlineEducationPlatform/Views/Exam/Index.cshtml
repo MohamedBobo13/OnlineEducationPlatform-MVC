@@ -1,0 +1,62 @@
+﻿@using OnlineEducationPlatform.BLL.ViewModels
+@model IEnumerable<ExamReadVm>
+
+@{
+    ViewData["Title"] = "Exams";
+}
+
+<div class="container mt-5" style="max-width:1000px">
+    <h1>Exams</h1>
+    
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Course Id</th>
+                    <th>Title</th>
+                    <th>Total Marks</th>
+                    <th>Total Questions</th>
+                    <th>Duration (Minutes)</th>
+                    <th>Passing Marks</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var exam in Model)
+                {
+                    <tr>
+                        <td>@exam.Id</td>
+                        <td>@exam.CourseId</td>
+                        <td>@exam.Title</td>
+                        <td>@exam.TotalMarks</td>
+                        <td>@exam.TotalQuestions</td>
+                        <td>@exam.DurationMinutes</td>
+                        <td>@exam.PassingMarks</td>
+                        <td>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@exam.Id" class="btn btn-sm btn-warning">Edit</a>
+                                <a asp-action="ConfirmSoftDelete" asp-route-id="@exam.Id" class="btn btn-sm btn-danger">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            No exams available at the moment.
+        </div>
+    }
+    @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+    {
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Create New Exam</a>
+        </p>
+    }
+</div>

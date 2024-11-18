@@ -1,0 +1,72 @@
+﻿@using OnlineEducationPlatform.BLL.ViewModels
+@model QuizAddVm
+
+
+<div class="container mt-5 align-content-center" style="width:1000px">
+        <div class="form-container">
+            <h2 class="form-title">Add New Quiz </h2>
+
+            <!-- Display Success or Error Messages -->
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            @using (Html.BeginForm("Create", "Quiz", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <label asp-for="CourseId" class="control-label"></label>
+                    <input asp-for="CourseId" class="form-control" />
+                    <span asp-validation-for="CourseId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="LectureId">Lecture ID</label>
+                    @Html.TextBoxFor(m => m.LectureId, new { @class = "form-control", @placeholder = "Enter Lecture ID" })
+                    @Html.ValidationMessageFor(m => m.LectureId, null, new { @class = "form-error" })
+                    <span asp-validation-for="LectureId" class="text-danger"></span>
+
+
+                </div>
+                <div class="form-group mt-3">
+                    <label for="Title">Title</label>
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Enter Title" })
+                    @Html.ValidationMessageFor(m => m.Title, null, new { @class = "form-error" })
+
+
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="TotalQuestions">TotalQuestions </label>
+                    @Html.TextBoxFor(m => m.TotalQuestions, new { @class = "form-control", @placeholder = "Enter Total Questions" })
+                    @Html.ValidationMessageFor(m => m.TotalQuestions, null, new { @class = "form-error" })
+                </div>
+                <div class="form-group mt-3">
+                    <label for="S">Total Marks </label>
+                    @Html.TextBoxFor(m => m.TotalMarks, new { @class = "form-control", @placeholder = "Enter Total Marks" })
+                    @Html.ValidationMessageFor(m => m.TotalMarks, null, new { @class = "form-error" })
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            }
+        </div>
+    </div>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate.unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+

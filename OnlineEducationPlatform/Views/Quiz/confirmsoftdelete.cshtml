@@ -1,0 +1,33 @@
+﻿@using OnlineEducationPlatform.BLL.ViewModels
+@model QuizReadVm
+
+
+<div class="container mt-5 align-content-center" style="width:1000px">
+        <h2 class="text-center">Confirm Delete</h2>
+
+        <div class="alert alert-warning">
+            Are you sure you want to soft delete this Quiz?
+        </div>
+
+        <div class="mb-3">
+            <strong>Course ID:</strong> @Model.CourseId
+        </div>
+        <div class="mb-3">
+            <strong>Lecture ID:</strong> @Model.LectureId
+        </div>
+
+        <form asp-action="SoftDelete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@Model.Id" />
+
+            <input type="hidden" name="courseId" value="@Model.CourseId" />
+            <input type="hidden" name="lectureId" value="@Model.LectureId" />
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-danger me-2">Delete</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

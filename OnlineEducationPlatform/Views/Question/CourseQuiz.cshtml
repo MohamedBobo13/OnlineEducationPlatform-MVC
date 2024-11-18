@@ -1,0 +1,53 @@
+﻿@model List<QuestionCourseQuizReadVm>
+<div class="container mt-5 align-content-center" style="width:1000px">
+<h2>Quiz Questions</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Content</th>
+            <th>Marks</th>
+            <th>Question Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="4">No quiz questions available.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var question in Model)
+            {
+                <tr>
+                    <td>@question.Content</td>
+                    <td>@question.Marks</td>
+                    <td>@question.QuestionType</td>
+                    <td>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Instructor")||User.IsInRole("Student"))
+                            {
+                        <a asp-action="Details" asp-route-id="@question.Id" class="btn btn-info">Details</a>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+                                {
+                        <a asp-action="EditQuiz" asp-route-id="@question.Id" class="btn btn-warning">Edit</a> 
+                        <a asp-action="DeleteQuiz" asp-route-id="@question.Id" class="btn btn-danger">Delete</a>
+                                }
+                            }
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div>
+     @if (User.IsInRole("Admin") || User.IsInRole("Instructor")){
+    <a asp-action="CreateQuiz" class="btn btn-success">Add New Question</a>
+     }
+    <a asp-action="SelectCourseForQuiz" class="btn btn-secondary">Back to Select Course</a>
+    
+</div>
+</div>

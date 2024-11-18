@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Select Course for Exam Questions";
+}
+<div class="container mt-5 align-content-center" style="width:1000px">
+<h2>Select Course to View Exam Questions</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="courseId">Enter Course ID:</label>
+        <input type="number" id="courseId" name="courseId" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="View Exam Questions" class="btn btn-primary" formaction="@Url.Action("CourseExam")" />
+    </div>
+</form>
+</div>

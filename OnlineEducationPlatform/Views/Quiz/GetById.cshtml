@@ -1,0 +1,25 @@
+﻿@using OnlineEducationPlatform.BLL.ViewModels
+@model QuizReadVm
+
+<div class="container mt-5 align-content-center" style="width:1000px">
+        <h2 class="text-center mb-4">Quiz Details</h2>
+
+        <div>
+            <h4 class="mb-3">Quiz</h4>
+            <dl class="row">
+                <dt class="col-sm-3">Title</dt>
+                <dd class="col-sm-9">@Model.Title</dd>
+
+                <dt class="col-sm-3">LectureId</dt>
+               <dd class="col-sm-9">@Model.LectureId</dd>
+
+            <dt class="col-sm-3">TotalQuestions</dt>
+            <dd class="col-sm-9">@Model.TotalQuestions</dd>
+            </dl>
+        </div>
+
+        <div class="mt-4">
+            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+            <a class="btn btn-secondary" asp-action="Index">Back to List</a>
+        </div>
+    </div>

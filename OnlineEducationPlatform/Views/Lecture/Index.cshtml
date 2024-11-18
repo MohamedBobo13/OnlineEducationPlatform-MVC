@@ -1,0 +1,42 @@
+﻿@using OnlineEducationPlatform.BLL.Dto.LectureDto
+@model IEnumerable<LectureReadVm>
+<div class="container mt-5 align-content-center" style="width:1000px">
+    <h2 class="text-center mb-4">Lecture List</h2>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Order</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var lecture in Model)
+            {
+                <tr>
+                    <td>@lecture.Title</td>
+                    <td>@lecture.Order</td>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+                    {
+                        <td>
+
+
+                            <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@lecture.Id">Details</a>
+                            <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@lecture.Id">Edit</a>
+                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@lecture.Id">Delete</a>
+
+                        </td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+    {
+        <div class="text-end">
+            <a class="btn btn-primary btn-create" asp-action="Create">Create New Lecture</a>
+        </div>
+    }
+</div>
+

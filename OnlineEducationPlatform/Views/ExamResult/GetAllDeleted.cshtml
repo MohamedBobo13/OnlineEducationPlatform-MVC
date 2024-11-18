@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Examresultwithoutidvm>
+
+<div class="container mt-5 align-content-center" style="width:1000px">
+        <h2 class="text-center mt-4">Soft Delete Exam Result List</h2>
+        <div class="table-container">
+            <table class="table table-striped table-bordered">
+            @if (User.IsInRole("Admin")){
+                <thead class="table-light">
+              
+
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Exam ID</th>
+                        <th>Score</th>
+                        <th>Total Marks</th>
+                        <th>Result</th>
+
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var examresult in Model)
+                        {
+                            <tr>
+                                <td>@examresult.studentId</td>
+                                <td>@examresult.Examid</td>
+                                <td>@examresult.Score</td>
+                                <td>@examresult.TotalMarks</td>
+                                <td>
+                                    @if (examresult.IsPassed)
+                                    {
+                                        <span class="text-success">Passed</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger">Failed</span>
+                                    }
+                                </td>
+                                <td class="action-buttons">
+
+
+                                    <a asp-action="ConfirmHardDelete" asp-route-studentId="@examresult.studentId" asp-route-examId="@examresult.Examid" class="btn btn-secondary">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center">No Soft deleted Exam Results found.</td>
+                        </tr>
+                    }
+                </tbody>
+                }
+            </table>
+        @if (User.IsInRole("Admin")){
+
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-3">Cancel</a>
+        }
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

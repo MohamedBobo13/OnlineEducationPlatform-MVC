@@ -1,0 +1,51 @@
+﻿@model AnswerResultAddVm
+<div class="container mt-5 align-content-center" style="width:1000px">
+<h2 class="text-center">Create Answer Result</h2>
+
+<form asp-action="Create" method="post" class="container mt-4">
+    <div class="form-group">
+        <label asp-for="StudentAnswer" class="control-label"></label>
+        <input asp-for="StudentAnswer" class="form-control" />
+        <span asp-validation-for="StudentAnswer" class="text-danger"></span>
+    </div>
+
+    <div class="form-group ">
+        <label asp-for="MarksAwarded" class="control-label"></label>
+        <input asp-for="MarksAwarded" class="form-control" />
+        <span asp-validation-for="MarksAwarded" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StudentId" class="control-label"></label>
+        <input asp-for="StudentId" class="form-control" />
+        <span asp-validation-for="StudentId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="QuestionId" class="control-label"></label>
+        <input asp-for="QuestionId" class="form-control" />
+        <span asp-validation-for="QuestionId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AnswerId" class="control-label"></label>
+        <input asp-for="AnswerId" class="form-control" />
+        <span asp-validation-for="AnswerId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<div class="form-group text-center">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}
